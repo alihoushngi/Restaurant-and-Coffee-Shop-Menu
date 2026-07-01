@@ -1,0 +1,483 @@
+[
+  {
+    "id": "espresso",
+    "categoryId": "coffee",
+    "name": "اسپرسو",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f8ede3'/><circle cx='200' cy='140' r='86' fill='%23c67c4e'/><rect x='122' y='100' width='156' height='86' rx='24' fill='%23fff4e8'/><path d='M132 176h136' stroke='%23a85f2d' stroke-width='10' stroke-linecap='round'/><circle cx='190' cy='140' r='20' fill='%23fff' opacity='0.95'/></svg>",
+    "shortDescription": "اسپرسوی قوی و خوش‌طعم با روکش کرمی",
+    "price": 90000,
+    "isPopular": true,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "flat-white",
+    "categoryId": "coffee",
+    "name": "فلت وایت",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fdf6ef'/><ellipse cx='200' cy='154' rx='102' ry='74' fill='%23d8b28a'/><rect x='120' y='120' width='160' height='92' rx='20' fill='%23fff8f2'/><path d='M150 145c0-20 20-36 50-36s50 16 50 36' stroke='%23b67d47' stroke-width='8' fill='none' stroke-linecap='round'/></svg>",
+    "shortDescription": "کافئین سبک با شیر بخارپز شده و طعم ملایم",
+    "price": 110000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "mint-cooler",
+    "categoryId": "cold-drinks",
+    "name": "کولر نعنا",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23effaf6'/><rect x='116' y='92' width='168' height='128' rx='28' fill='%23ccefe7'/><path d='M148 150c20-24 38-28 62-16 16 8 22 22 22 36' stroke='%2392c9b3' stroke-width='8' fill='none' stroke-linecap='round'/><path d='M150 112h100' stroke='%2382b8a0' stroke-width='8' stroke-linecap='round'/></svg>",
+    "shortDescription": "نوشیدنی خنک با نعنا و لیمو",
+    "price": 95000,
+    "isPopular": true,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "hours",
+      "availableFrom": "10:00",
+      "availableTo": "22:00"
+    }
+  },
+  {
+    "id": "orange-fizz",
+    "categoryId": "cold-drinks",
+    "name": "فیز پرتقال",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff6e6'/><rect x='110' y='88' width='180' height='132' rx='24' fill='%23ffcf6a'/><circle cx='200' cy='164' r='32' fill='%23fff7d5'/><path d='M166 132h68' stroke='%23c98c1c' stroke-width='10' stroke-linecap='round'/></svg>",
+    "shortDescription": "نوشیدنی ترش و گازدار با پودر پرتقال",
+    "price": 85000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "berry-cake",
+    "categoryId": "cake-dessert",
+    "name": "کیک توت‌فرنگی",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff4f5'/><rect x='100' y='124' width='200' height='98' rx='22' fill='%23f3c7c0'/><circle cx='160' cy='160' r='18' fill='%23ff5b76'/><circle cx='204' cy='152' r='16' fill='%23f8a1b1'/><circle cx='234' cy='174' r='10' fill='%23ff698b'/></svg>",
+    "shortDescription": "کیک سبک با خامه و میوه تازه",
+    "price": 120000,
+    "isPopular": true,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "hours",
+      "availableFrom": "08:00",
+      "availableTo": "20:00"
+    }
+  },
+  {
+    "id": "almond-pastry",
+    "categoryId": "breakfast",
+    "name": "پیتزا بادام",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fcf6eb'/><rect x='110' y='100' width='180' height='110' rx='18' fill='%23e7b66b'/><path d='M140 126h120' stroke='%23a56525' stroke-width='10' stroke-linecap='round'/><path d='M146 152h100' stroke='%23a56525' stroke-width='10' stroke-linecap='round'/></svg>",
+    "shortDescription": "صبحانه‌ای خوش‌طعم با نان تازه و کره",
+    "price": 98000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "hours",
+      "availableFrom": "08:00",
+      "availableTo": "13:00"
+    }
+  },
+  {
+    "id": "panna-cotta",
+    "categoryId": "cake-dessert",
+    "name": "پاناکوتا",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff8f8'/><rect x='112' y='92' width='176' height='122' rx='24' fill='%23f7d1d5'/><circle cx='200' cy='154' r='46' fill='%23fff' opacity='0.9'/><path d='M168 128h64' stroke='%23d88c95' stroke-width='8' stroke-linecap='round'/></svg>",
+    "shortDescription": "دسر نرم و خامه‌ای با شربت موز",
+    "price": 115000,
+    "isPopular": true,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "avoli-sandwich",
+    "categoryId": "sandwich",
+    "name": "ساندویچ رایو",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fbf7ed'/><rect x='110' y='108' width='180' height='102' rx='18' fill='%23d7a85b'/><path d='M132 128h156' stroke='%238a5826' stroke-width='10' stroke-linecap='round'/><path d='M142 154h136' stroke='%238a5826' stroke-width='10' stroke-linecap='round'/></svg>",
+    "shortDescription": "ساندویچ گوشت و سبزیجات با سس خاص",
+    "price": 145000,
+    "isPopular": true,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "hours",
+      "availableFrom": "11:00",
+      "availableTo": "23:00"
+    }
+  },
+  {
+    "id": "french-fries",
+    "categoryId": "appetizer",
+    "name": "سیب‌زمینی سرخ کرده",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff6e8'/><rect x='112' y='84' width='176' height='132' rx='24' fill='%23f2b85c'/><path d='M142 110h116' stroke='%23a45b16' stroke-width='10' stroke-linecap='round'/><path d='M142 142h116' stroke='%23a45b16' stroke-width='10' stroke-linecap='round'/><path d='M142 174h116' stroke='%23a45b16' stroke-width='10' stroke-linecap='round'/></svg>",
+    "shortDescription": "سیب‌زمینی سرخ کرده همراه با ادویه",
+    "price": 450000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "baked-potato",
+    "categoryId": "appetizer",
+    "name": "سیب‌زمینی تنوری",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff4e6'/><rect x='118' y='84' width='164' height='132' rx='24' fill='%23c77d39'/><path d='M150 128h100' stroke='%23fff6ea' stroke-width='10' stroke-linecap='round'/><path d='M150 156h100' stroke='%23fff6ea' stroke-width='10' stroke-linecap='round'/></svg>",
+    "shortDescription": "سیب‌زمینی تنوری همراه با ادویه",
+    "price": 350000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "rayo-potato",
+    "categoryId": "appetizer",
+    "name": "سیب‌زمینی رایو",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff8ef'/><rect x='110' y='88' width='180' height='132' rx='24' fill='%23d29341'/><rect x='132' y='110' width='136' height='88' rx='16' fill='%23fff6e8'/><path d='M148 134h104' stroke='%23a45b16' stroke-width='8' stroke-linecap='round'/></svg>",
+    "shortDescription": "سیب‌زمینی سرخ کرده، بیکن گوساله، دیپ پنیر گودا، پنیر پارمزان",
+    "price": 1200000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "hummus",
+    "categoryId": "appetizer",
+    "name": "حمص",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff7e7'/><circle cx='200' cy='150' r='86' fill='%23c98d3f'/><circle cx='200' cy='150' r='54' fill='%23f6e0b8'/></svg>",
+    "shortDescription": "محتویات: هیچی نزار",
+    "price": 450000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "crispy-shrimp",
+    "categoryId": "appetizer",
+    "name": "میگو پفکی",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f7f8ff'/><rect x='122' y='94' width='156' height='122' rx='22' fill='%23f2c2a7'/><circle cx='200' cy='154' r='42' fill='%23fff4ea'/></svg>",
+    "shortDescription": "150 گرم میگو سایز متوسط (60-51) + سس تارتار",
+    "price": 790000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "cucumber-doogh",
+    "categoryId": "appetizer",
+    "name": "آب دوغ خیار",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23eefcf6'/><rect x='122' y='92' width='156' height='122' rx='24' fill='%23b7e4d2'/><path d='M152 122h96' stroke='%236d8f7d' stroke-width='8' stroke-linecap='round'/></svg>",
+    "shortDescription": "محتویات: هیچی نزار",
+    "price": 575000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "caesar-salad-grilled",
+    "categoryId": "salad",
+    "name": "سالاد سزار دونفره (با مرغ گریل دو تیکه)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "کاهو رسمی، نان سیر، مرغ، پنیر پارمزان، سس سزار",
+    "price": 970000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "caesar-salad-fried",
+    "categoryId": "salad",
+    "name": "سالاد سزار دونفره (با مرغ سوخاری دو تیکه)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "کاهو رسمی، نان سیر، مرغ، پنیر پارمزان، سس سزار",
+    "price": 970000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "persian-caesar-salad-grilled",
+    "categoryId": "salad",
+    "name": "سالاد سزار ایرانی دونفره (با مرغ گریل دو تیکه)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "کاهو رسمی، گوچه گیلاسی، زیتون، نان سیر، مرغ، پنیر پارمزان، سس سزار",
+    "price": 990000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "persian-caesar-salad-fried",
+    "categoryId": "salad",
+    "name": "سالاد سزار ایرانی دونفره (با مرغ سوخاری دو تیکه)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "کاهو رسمی، گوچه گیلاسی، زیتون، نان سیر، مرغ، پنیر پارمزان، سس سزار",
+    "price": 990000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "mison-salad",
+    "categoryId": "salad",
+    "name": "سالاد مِیسون (دو نفره)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "بادام درختی، بیکن، کاهو، گوجه گیلاسی، پنیر گودا رنده شده، پنیر پارمزان، نان برشته شده، سس ترش و شیرین",
+    "price": 1150000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "green-salad",
+    "categoryId": "salad",
+    "name": "سالاد سبز (دو نفره)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "کاهو پیچ و رسمی، فلفل دلمه رنگی، گوجه گیلاسی، پیازچه، زیتون، پیاز",
+    "price": 730000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "rayo-salad",
+    "categoryId": "salad",
+    "name": "سالاد رایو (دو نفره)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "کاهو رسمی، کاهو پیچ، اسفناج، روکولا، میکروگرین، پنیر پارمزان",
+    "price": 730000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "fatoosh-salad",
+    "categoryId": "salad",
+    "name": "سالاد فتوش (دو نفره)",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "کاهو، خیار، گوجه فرنگی، نان برشته شده، جعفری، پیاز، تربچه، پیازچه، نعناع",
+    "price": 730000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "extra-chicken-salad",
+    "categoryId": "salad",
+    "name": "مرغ اضافی برای سالاد",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbf5'/><rect x='110' y='92' width='180' height='122' rx='24' fill='%23c6dca2'/><circle cx='200' cy='150' r='54' fill='%23fdfdf0'/></svg>",
+    "shortDescription": "افزایش مرغ برای سالاد",
+    "price": 285000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    }
+  },
+  {
+    "id": "pizza-margherita-large",
+    "categoryId": "pizza",
+    "name": "پیتزا مارگاریتا بزرگ",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff8ed'/><circle cx='200' cy='150' r='92' fill='%23d18d3a'/><circle cx='200' cy='150' r='64' fill='%23f6e4b5'/></svg>",
+    "shortDescription": "پنیر موزارلا، گوجه، ریحان",
+    "price": 980000,
+    "isPopular": true,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "large"
+  },
+  {
+    "id": "pizza-pepperoni-junior",
+    "categoryId": "pizza",
+    "name": "پیتزا پپرونی جونیور",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff8ed'/><circle cx='200' cy='150' r='74' fill='%23d18d3a'/><circle cx='200' cy='150' r='50' fill='%23f6e4b5'/></svg>",
+    "shortDescription": "پپرونی، پنیر و سس مخصوص",
+    "price": 610000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "junior"
+  },
+  {
+    "id": "americano",
+    "categoryId": "coffee",
+    "name": "آمریکانو",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f8ede3'/><circle cx='200' cy='140' r='86' fill='%23c67c4e'/><rect x='122' y='110' width='156' height='74' rx='22' fill='%23fff4e8'/></svg>",
+    "shortDescription": "قهوه دمی با طعم روشن و ملایم",
+    "price": 105000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "drip"
+  },
+  {
+    "id": "iced-espresso",
+    "categoryId": "coffee",
+    "name": "اسپرسو یخی",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23eef7ff'/><circle cx='200' cy='140' r='80' fill='%23c67c4e'/><rect x='126' y='114' width='148' height='70' rx='20' fill='%23f7f7f7'/></svg>",
+    "shortDescription": "اسپرسوی سرد با یخ و طعم خنک",
+    "price": 125000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "cold-espresso"
+  },
+  {
+    "id": "milk-latte",
+    "categoryId": "hot-drinks",
+    "name": "لاته شیر",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff8ef'/><rect x='118' y='96' width='164' height='118' rx='24' fill='%23edd1a3'/></svg>",
+    "shortDescription": "نوشیدنی گرم برپایه شیر و طعم کرمی",
+    "price": 115000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "milk-base"
+  },
+  {
+    "id": "mint-tea",
+    "categoryId": "hot-drinks",
+    "name": "چای نعنا",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f5fbe8'/><rect x='120' y='108' width='160' height='92' rx='20' fill='%23c7d58f'/></svg>",
+    "shortDescription": "دمنوش آرام‌بخش با نعنا و چای",
+    "price": 90000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "tea"
+  },
+  {
+    "id": "hot-espresso-double",
+    "categoryId": "hot-drinks",
+    "name": "اسپرسو داغ",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23f8ede3'/><circle cx='200' cy='140' r='86' fill='%23c67c4e'/><rect x='122' y='110' width='156' height='74' rx='22' fill='%23fff4e8'/></svg>",
+    "shortDescription": "اسپرسوی گرم و پرطعم",
+    "price": 98000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "hot-espresso"
+  },
+  {
+    "id": "citrus-mocktail",
+    "categoryId": "cold-drinks",
+    "name": "ماکتل لیمویی",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff9e8'/><rect x='112' y='98' width='176' height='116' rx='24' fill='%23f1c96d'/></svg>",
+    "shortDescription": "ترکیب تازه از لیمو و نعنا",
+    "price": 125000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "hours",
+      "availableFrom": "10:00",
+      "availableTo": "22:00"
+    },
+    "subcategoryId": "mocktail"
+  },
+  {
+    "id": "sparkling-soda",
+    "categoryId": "cold-drinks",
+    "name": "سودا گازدار",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23eef7ff'/><rect x='120' y='100' width='160' height='116' rx='24' fill='%23a9d4ff'/></svg>",
+    "shortDescription": "نوشیدنی خنک با طعم میوه‌ای",
+    "price": 95000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "hours",
+      "availableFrom": "10:00",
+      "availableTo": "22:00"
+    },
+    "subcategoryId": "soda"
+  },
+  {
+    "id": "cold-espresso-classic",
+    "categoryId": "cold-drinks",
+    "name": "اسپرسو سرد کلاسیک",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23eef7ff'/><circle cx='200' cy='140' r='80' fill='%23c67c4e'/><rect x='126' y='114' width='148' height='70' rx='20' fill='%23f7f7f7'/></svg>",
+    "shortDescription": "اسپرسوی سرد با طعم شفاف و خوش‌عطر",
+    "price": 128000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "hours",
+      "availableFrom": "10:00",
+      "availableTo": "22:00"
+    },
+    "subcategoryId": "cold-espresso"
+  },
+  {
+    "id": "banana-shake",
+    "categoryId": "shake-smoothie",
+    "name": "شیک موز",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff8e8'/><rect x='116' y='92' width='168' height='124' rx='24' fill='%23e8c767'/></svg>",
+    "shortDescription": "شیک غلیظ با موز و شیر",
+    "price": 145000,
+    "isPopular": true,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "shake"
+  },
+  {
+    "id": "berry-smoothie",
+    "categoryId": "shake-smoothie",
+    "name": "اسموتی توت‌فرنگی",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' rx='28' fill='%23fff2f5'/><rect x='116' y='92' width='168' height='124' rx='24' fill='%23f1a5b2'/></svg>",
+    "shortDescription": "اسموتی تازه و پرطعم با میوه توت فرنگی",
+    "price": 150000,
+    "isPopular": false,
+    "favoriteEnabled": true,
+    "availability": {
+      "type": "always"
+    },
+    "subcategoryId": "smoothie"
+  }
+]
