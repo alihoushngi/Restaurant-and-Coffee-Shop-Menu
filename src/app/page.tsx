@@ -22,7 +22,7 @@ export default function Home() {
     useFavorites();
 
   const [selectedFood, setSelectedFood] = useState<Food | null>(null);
-  const [activeCategoryId, setActiveCategoryId] = useState("coffee");
+  const [activeCategoryId, setActiveCategoryId] = useState("appetizer");
   const [activeSubcategories, setActiveSubcategories] = useState<
     Record<string, string>
   >({});
@@ -30,29 +30,29 @@ export default function Home() {
 
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     const activeCategory = menuCategories.find(
       (category) => category.id === activeCategoryId,
     );
 
     if (activeCategory) {
       const section = sectionRefs.current[activeCategory.id];
-      section?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [activeCategoryId]);
 
-  // set default subcategory
-  useEffect(() => {
-    const subcategories = getSubcategoriesForCategory(activeCategoryId);
+      if (section) {
+        const y = section.getBoundingClientRect().top + window.pageYOffset - 80;
 
-    if (subcategories.length > 0) {
-      setActiveSubcategories((prev) => ({
-        ...prev,
-        [activeCategoryId]: prev[activeCategoryId] || subcategories[0].id,
-      }));
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      }
     }
   }, [activeCategoryId]);
 
@@ -101,6 +101,17 @@ export default function Home() {
     });
   }, [activeCategoryId, categoriesWithFoods, query]);
 
+  const handleSelectCategory = (id: string) => {
+    setActiveCategoryId(id);
+
+    const subs = getSubcategoriesForCategory(id);
+
+    setActiveSubcategories((prev) => ({
+      ...prev,
+      [id]: prev[id] || subs[0]?.id,
+    }));
+  };
+
   return (
     <PageShell>
       <Header
@@ -119,7 +130,7 @@ export default function Home() {
       <CategoryTabs
         categories={menuCategories}
         activeCategoryId={activeCategoryId}
-        onSelect={setActiveCategoryId}
+        onSelect={handleSelectCategory}
         availabilityMap={availabilityMap}
       />
 
