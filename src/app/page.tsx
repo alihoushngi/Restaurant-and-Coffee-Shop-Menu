@@ -1,284 +1,103 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Motorbike, UtensilsCrossed } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-import FoodCard from "@/components/features/FoodCard";
-import FoodModal from "@/components/features/FoodModal";
-import PageShell from "@/components/layout/PageShell";
-import CategoryTabs from "@/components/ui/CategoryTabs";
-import Header from "@/components/ui/Header";
-import { useFavorites } from "@/hooks/useFavorites";
-import {
-  getFoodsByCategory,
-  getSubcategoriesForCategory,
-  isAvailabilityActive,
-  menuCategories,
-  menuFoods,
-} from "@/lib/menu/utils";
-import type { Food } from "@/types/menu";
+import Logo from "@/assets/logo/logo.png";
 
 export default function Home() {
-  const { favorites, addToFavorites, removeFromFavorites, getQuantity } =
-    useFavorites();
+  const router = useRouter();
 
-  const [selectedFood, setSelectedFood] = useState<Food | null>(null);
-  const [activeCategoryId, setActiveCategoryId] = useState("appetizer");
-  const [activeSubcategories, setActiveSubcategories] = useState<
-    Record<string, string>
-  >({});
-  const [query] = useState("");
-
-  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
-
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    const activeCategory = menuCategories.find(
-      (category) => category.id === activeCategoryId,
-    );
-
-    if (activeCategory) {
-      const section = sectionRefs.current[activeCategory.id];
-
-      if (section) {
-        const y = section.getBoundingClientRect().top + window.pageYOffset - 80;
-
-        window.scrollTo({
-          top: y,
-          behavior: "smooth",
-        });
-      }
-    }
-  }, [activeCategoryId]);
-
-  const availabilityMap = useMemo(() => {
-    return Object.fromEntries(
-      menuCategories.map((category) => {
-        const foods = getFoodsByCategory(category.id);
-
-        const hasAnyAvailableFood = foods.some((food) =>
-          isAvailabilityActive(food.availability),
-        );
-
-        return [
-          category.id,
-          hasAnyAvailableFood || isAvailabilityActive(category.availability),
-        ];
-      }),
-    );
-  }, []);
-
-  const categoriesWithFoods = useMemo(() => {
-    return menuCategories.map((category) => ({
-      category,
-      foods: getFoodsByCategory(category.id),
-    }));
-  }, []);
-
-  const visibleCategories = useMemo(() => {
-    const normalized = query.trim().toLocaleLowerCase("fa-IR");
-
-    return categoriesWithFoods.filter(({ category, foods }) => {
-      if (activeCategoryId === "popular") return false;
-
-      if (activeCategoryId && category.id !== activeCategoryId) {
-        return false;
-      }
-
-      if (!normalized) return true;
-
-      return foods.some((food) => {
-        return (
-          food.name.toLocaleLowerCase("fa-IR").includes(normalized) ||
-          category.title.toLocaleLowerCase("fa-IR").includes(normalized)
-        );
-      });
-    });
-  }, [activeCategoryId, categoriesWithFoods, query]);
-
-  const handleSelectCategory = (id: string) => {
-    setActiveCategoryId(id);
-
-    const subs = getSubcategoriesForCategory(id);
-
-    setActiveSubcategories((prev) => ({
-      ...prev,
-      [id]: prev[id] || subs[0]?.id,
-    }));
-  };
+  const menuOptions = [
+    {
+      id: "tablemenu",
+      title: "منو سالن",
+      description: "مشاهده منوی سفارش داخل کافه",
+      icon: UtensilsCrossed,
+      route: "/tablemenu",
+    },
+    {
+      id: "deliverymenu",
+      title: "منو بیرون بر",
+      description: "مشاهده منوی سفارش بیرون بر",
+      icon: Motorbike,
+      route: "/deliverymenu",
+    },
+  ];
 
   return (
-    <PageShell>
-      <Header
-        title="منوی رایو"
-        subtitle="تجربه‌ای سبک و سریع از سفارش‌های محبوب"
-      />
-
-      <section className="rounded-[20px] border border-[#7a394a] bg-[#7a394a]/70 p-3 text-sm leading-6 text-white shadow-sm">
-        <p className="font-semibold">نکته مهم</p>
-        <p className="mt-1 text-[13px]">
-          فقط پنج‌شنبه و جمعه شب‌ها، مدت استفاده از میز حداکثر ۲ ساعته. در سایر
-          زمان‌ها محدودیتی که نداریم هیچ، خوشحال می‌شیم بیشتر میزبانتون باشیم ☺️
-        </p>
-      </section>
-
-      <CategoryTabs
-        categories={menuCategories}
-        activeCategoryId={activeCategoryId}
-        onSelect={handleSelectCategory}
-        availabilityMap={availabilityMap}
-      />
-
-      {activeCategoryId === "popular" ? (
-        <section className="rounded-[28px] bg-white p-4 shadow-sm">
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-lg font-bold text-zinc-900">محبوب‌ترین‌ها</h2>
-            <span className="text-sm text-zinc-500">
-              {favorites.reduce((total, item) => total + item.quantity, 0)} مورد
-              در لیست سفارش
-            </span>
+    <main className="min-h-screen bg-[#f6f1eb] px-4 py-8 text-right flex justify-center items-center">
+      <div className="mx-auto flex max-w-md flex-col justify-center">
+        {/* Logo */}
+        <section className="mb-2 flex flex-col items-center">
+          <div className="mb-2 overflow-hidden rounded-3xl bg-white p-4 shadow-sm">
+            <Image
+              src={Logo}
+              alt="Avoli Cafe"
+              width={80}
+              height={80}
+              priority
+              className="object-contain"
+            />
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {menuFoods
-              .filter((food) => food.isPopular)
-              .filter((food) => isAvailabilityActive(food.availability))
-              .slice(0, 8)
-              .map((food) => (
-                <FoodCard
-                  key={food.id}
-                  food={food}
-                  quantity={getQuantity(food.id)}
-                  onAddToOrder={() => addToFavorites(food.id)}
-                  onRemoveFromOrder={() => removeFromFavorites(food.id)}
-                  onOpen={() => setSelectedFood(food)}
-                />
-              ))}
-          </div>
+          {/* <h1 className="text-2xl font-bold text-zinc-900">کافه آولی</h1> */}
+
+          <p className="mt-0 text-sm leading-6 text-zinc-500">
+            لطفاً نوع منوی مورد نظر خود را انتخاب کنید
+          </p>
         </section>
-      ) : (
-        <section className="flex flex-col gap-4">
-          {visibleCategories.map(({ category, foods }) => {
-            const subcategories = getSubcategoriesForCategory(category.id);
 
-            const activeSubcategory =
-              activeSubcategories[category.id] || subcategories?.[0]?.id;
+        {/* Notice */}
+        <section className="mb-2 rounded-[22px] border border-[#7a394a] bg-[#7a394a]/90 p-4 text-sm leading-6 text-white shadow-sm">
+          <p className="font-semibold">به کافه آولی خوش آمدید ✨</p>
+          <p className="mt-1 text-[13px] opacity-90">
+            برای مشاهده منوی سالن یا سفارش بیرون بر، یکی از گزینه‌های زیر را
+            انتخاب کنید.
+          </p>
+        </section>
 
-            const visibleFoods = foods
-              .filter((food) => {
-                if (!query.trim()) return true;
-
-                const normalized = query.trim().toLocaleLowerCase("fa-IR");
-
-                return (
-                  food.name.toLocaleLowerCase("fa-IR").includes(normalized) ||
-                  category.title.toLocaleLowerCase("fa-IR").includes(normalized)
-                );
-              })
-              .sort((first, second) => {
-                const firstAvailable = isAvailabilityActive(first.availability);
-                const secondAvailable = isAvailabilityActive(
-                  second.availability,
-                );
-
-                if (firstAvailable === secondAvailable) return 0;
-
-                return firstAvailable ? -1 : 1;
-              });
-
-            const foodsToRender =
-              subcategories.length > 0
-                ? visibleFoods.filter(
-                    (food) => food.subcategoryId === activeSubcategory,
-                  )
-                : visibleFoods;
+        {/* Menu Cards */}
+        <section className="flex flex-col gap-4 mt-2">
+          {menuOptions.map((item) => {
+            const Icon = item.icon;
 
             return (
-              <div
-                key={category.id}
-                ref={(element) => {
-                  sectionRefs.current[category.id] = element;
-                }}
-                className="rounded-[28px] bg-white p-4 shadow-sm"
+              <button
+                key={item.id}
+                onClick={() => router.push(item.route)}
+                className="group rounded-[28px] bg-white p-5 text-right shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-[0.98]"
               >
-                <div className="mb-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <h3 className="text-lg font-bold text-zinc-900">
-                      {category.title}
-                    </h3>
-
-                    <span className="text-sm text-zinc-500">
-                      {foodsToRender.length} گزینه
-                    </span>
+                <div className="flex items-center gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#496a65]/10">
+                    <Icon className="h-6 w-6 text-[#496a65]" />
                   </div>
 
-                  {subcategories.length > 0 && (
-                    <div className="flex gap-2 overflow-x-auto pb-2">
-                      {subcategories.map((subcategory) => {
-                        const isActive = activeSubcategory === subcategory.id;
+                  <div className="flex-1">
+                    <h2 className="text-base font-bold text-zinc-900">
+                      {item.title}
+                    </h2>
 
-                        return (
-                          <button
-                            key={subcategory.id}
-                            type="button"
-                            onClick={() =>
-                              setActiveSubcategories((prev) => ({
-                                ...prev,
-                                [category.id]: subcategory.id,
-                              }))
-                            }
-                            className={`shrink-0 rounded-full px-3 py-2 text-xs font-medium transition ${
-                              isActive
-                                ? "bg-[#496a65] text-white"
-                                : "bg-zinc-100 text-zinc-700"
-                            }`}
-                          >
-                            {subcategory.title}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
+                    <p className="mt-1 text-sm leading-5 text-zinc-500">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="text-xl text-zinc-300 transition group-hover:translate-x-[-4px]">
+                    ←
+                  </div>
                 </div>
-
-                {foodsToRender.length === 0 ? (
-                  <p className="rounded-2xl bg-zinc-50 p-3 text-sm text-zinc-500">
-                    هیچ گزینه‌ای پیدا نشد.
-                  </p>
-                ) : (
-                  <div className="grid gap-4 md:grid-cols-2">
-                    {foodsToRender.map((food) => (
-                      <FoodCard
-                        key={food.id}
-                        food={food}
-                        quantity={getQuantity(food.id)}
-                        onAddToOrder={() => addToFavorites(food.id)}
-                        onRemoveFromOrder={() => removeFromFavorites(food.id)}
-                        onOpen={() => setSelectedFood(food)}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
+              </button>
             );
           })}
         </section>
-      )}
 
-      <FoodModal
-        food={selectedFood}
-        quantity={selectedFood ? getQuantity(selectedFood.id) : 0}
-        onClose={() => setSelectedFood(null)}
-        onAddToOrder={() => selectedFood && addToFavorites(selectedFood.id)}
-        onRemoveFromOrder={() =>
-          selectedFood && removeFromFavorites(selectedFood.id)
-        }
-      />
-    </PageShell>
+        {/* Footer */}
+        <footer className="mt-8 text-center text-xs text-zinc-400">
+          Avoli Cafe Menu © 2026
+        </footer>
+      </div>
+    </main>
   );
 }

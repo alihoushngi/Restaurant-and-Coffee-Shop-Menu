@@ -1,6 +1,6 @@
 import Logo from "@/assets/logo/logo.png";
 import Image from "next/image";
-import type { FC } from "react";
+import { FC } from "react";
 
 interface HeaderProps {
   title: string;
