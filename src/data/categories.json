@@ -4,36 +4,28 @@
     "title": "پیش غذا",
     "icon": "🥟",
     "description": "انتخابی سبک و خوش‌طعم برای شروع",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "salad",
     "title": "سالاد",
     "icon": "🥗",
     "description": "سالاد‌های تازه و پرانرژی برای هر سلیقه",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "pizza",
     "title": "پیتزا ها",
     "icon": "🍕",
     "description": "پیتزای خوش‌طعم و داغ برای هر لحظه",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "pasta",
     "title": "پاستاها و نودل",
     "icon": "🍝",
     "description": "پاستا و نودل‌های خوش‌طعم و پرکالری",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "main",
@@ -62,18 +54,14 @@
     "title": "قهوه",
     "icon": "☕",
     "description": "کافه‌ای از بهترین دانه‌های عربیکا",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "hot-drinks",
     "title": "نوشیدنی های گرم",
     "icon": "🫖",
     "description": "انتخابی گرم و آرام‌بخش برای آن لحظه",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "cold-drinks",
@@ -81,9 +69,7 @@
     "icon": "🧊",
     "description": "انتخابی خنک و تازه برای هوای گرم",
     "availability": {
-      "type": "hours",
-      "availableFrom": "10:00",
-      "availableTo": "22:00"
+      "type": "always"
     }
   },
   {
@@ -92,9 +78,7 @@
     "icon": "🍰",
     "description": "کیک و دسرهای تازه و خوش‌عطر",
     "availability": {
-      "type": "hours",
-      "availableFrom": "08:00",
-      "availableTo": "20:00"
+      "type": "always"
     }
   },
   {
@@ -102,18 +86,14 @@
     "title": "شیک و اسموتی",
     "icon": "🥤",
     "description": "شیک و اسموتی‌های خوش‌طعم و پرانرژی",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "hookah",
     "title": "قلیان ها",
     "icon": "💨",
     "description": "قلیان با طعم‌های خاص و آرامش‌بخش",
-    "availability": {
-      "type": "always"
-    }
+    "availability": { "type": "always" }
   },
   {
     "id": "breakfast",
@@ -121,9 +101,7 @@
     "icon": "🥐",
     "description": "صبحانه‌ای سبک و خوش‌طعم",
     "availability": {
-      "type": "hours",
-      "availableFrom": "08:00",
-      "availableTo": "13:00"
+      "type": "always"
     }
   }
 ]

@@ -1,22 +1,19 @@
 /* eslint-disable no-unused-vars */
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-
 import FoodCard from "@/components/features/FoodCard";
 import FoodModal from "@/components/features/FoodModal";
 import PageShell from "@/components/layout/PageShell";
 import CategoryTabs from "@/components/ui/CategoryTabs";
 import { useFavorites } from "@/hooks/useFavorites";
-
 import {
   getFoodsByCategory,
   getSubcategoriesForCategory,
   isAvailabilityActive,
   menuCategories,
 } from "@/lib/menu/utils";
-
 import type { Food } from "@/types/menu";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const categoryBg = [
   "bg-amber-50",
@@ -30,13 +27,11 @@ const categoryBg = [
 
 export default function TableMenu() {
   const { addToFavorites, removeFromFavorites, getQuantity } = useFavorites();
-
   const [selectedFood, setSelectedFood] = useState<Food | null>(null);
   const [activeCategoryId, setActiveCategoryId] = useState("appetizer");
   const [activeSubcategories, setActiveSubcategories] = useState<
     Record<string, string>
   >({});
-
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const categoriesWithFoods = useMemo(() => {
@@ -49,14 +44,11 @@ export default function TableMenu() {
   // ---------- SCROLL SPY ----------
   useEffect(() => {
     const sections = Object.entries(sectionRefs.current);
-
     const observer = new IntersectionObserver(
       (entries) => {
         let bestEntry: IntersectionObserverEntry | null = null;
-
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-
           if (
             !bestEntry ||
             entry.intersectionRatio > bestEntry.intersectionRatio
@@ -64,16 +56,11 @@ export default function TableMenu() {
             bestEntry = entry;
           }
         }
-
         if (!bestEntry) return;
-
         const id = bestEntry.target.getAttribute("data-category");
         if (id) setActiveCategoryId(id);
       },
-      {
-        root: null,
-        threshold: [0.2, 0.4, 0.6, 0.8],
-      },
+      { root: null, threshold: [0.2, 0.4, 0.6, 0.8] },
     );
 
     sections.forEach(([_, el]) => {
@@ -84,9 +71,10 @@ export default function TableMenu() {
   }, []);
 
   const handleTabClick = (id: string) => {
+    setActiveCategoryId(id);
     const el = sectionRefs.current[id];
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -98,20 +86,16 @@ export default function TableMenu() {
         onSelect={handleTabClick}
       />
 
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-6 mt-0">
         {categoriesWithFoods.map(({ category, foods }, index) => {
           const subcategories = getSubcategoriesForCategory(category.id);
-
           const activeSub =
             activeSubcategories[category.id] || subcategories?.[0]?.id;
 
-          const visibleFoods = foods
-            .filter((food) => isAvailabilityActive(food.availability))
-            .filter((food) => {
-              if (!activeSub) return true;
-              if (subcategories.length === 0) return true;
-              return food.subcategoryId === activeSub;
-            });
+          const visibleFoods = foods.filter((food) => {
+            if (!activeSub || subcategories.length === 0) return true;
+            return food.subcategoryId === activeSub;
+          });
 
           return (
             <div
@@ -127,7 +111,6 @@ export default function TableMenu() {
                 <h2 className="text-lg font-bold text-zinc-900">
                   {category.icon} {category.title}
                 </h2>
-
                 <span className="text-sm text-zinc-500">
                   {visibleFoods.length} آیتم
                 </span>
@@ -138,7 +121,6 @@ export default function TableMenu() {
                 <div className="mb-4 flex gap-2 overflow-x-auto">
                   {subcategories.map((sub) => {
                     const isActive = activeSub === sub.id;
-
                     return (
                       <button
                         key={sub.id}
@@ -163,21 +145,29 @@ export default function TableMenu() {
 
               {/* Foods */}
               {visibleFoods.length === 0 ? (
-                <p className="text-sm text-zinc-500">
-                  آیتمی برای این بخش وجود ندارد
+                <p className="text-sm text-zinc-500 py-12 text-center">
+                  در حال حاضر آیتمی در این بخش موجود نیست
                 </p>
               ) : (
                 <div className="grid gap-4 md:grid-cols-2">
-                  {visibleFoods.map((food) => (
-                    <FoodCard
-                      key={food.id}
-                      food={food}
-                      quantity={getQuantity(food.id)}
-                      onAddToOrder={() => addToFavorites(food.id)}
-                      onRemoveFromOrder={() => removeFromFavorites(food.id)}
-                      onOpen={() => setSelectedFood(food)}
-                    />
-                  ))}
+                  {visibleFoods.map((food) => {
+                    const isAvailable = isAvailabilityActive(food.availability);
+
+                    return (
+                      <FoodCard
+                        key={food.id}
+                        food={food}
+                        quantity={getQuantity(food.id)}
+                        onAddToOrder={() => {
+                          if (isAvailable) {
+                            addToFavorites(food.id);
+                          }
+                        }}
+                        onRemoveFromOrder={() => removeFromFavorites(food.id)}
+                        onOpen={() => setSelectedFood(food)}
+                      />
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -189,7 +179,11 @@ export default function TableMenu() {
         food={selectedFood}
         quantity={selectedFood ? getQuantity(selectedFood.id) : 0}
         onClose={() => setSelectedFood(null)}
-        onAddToOrder={() => selectedFood && addToFavorites(selectedFood.id)}
+        onAddToOrder={() =>
+          selectedFood &&
+          isAvailabilityActive(selectedFood.availability) &&
+          addToFavorites(selectedFood.id)
+        }
         onRemoveFromOrder={() =>
           selectedFood && removeFromFavorites(selectedFood.id)
         }
