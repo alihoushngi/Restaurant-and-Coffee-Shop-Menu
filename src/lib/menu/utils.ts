@@ -7,10 +7,10 @@ import type {
 
 import categories from "@/data/categories.json";
 import foodDetails from "@/data/food-details.json";
-import foods from "@/data/foods.json";
+import { foodList } from "@/data/foods";
 
 export const menuCategories = categories as Category[];
-export const menuFoods = foods as Food[];
+export const menuFoods = foodList as Food[];
 export const menuFoodDetails = foodDetails as FoodDetail[];
 
 export const formatPrice = (price: number) =>
