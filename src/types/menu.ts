@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface MenuAvailability {
   type: "always" | "hours";
   availableFrom?: string;
@@ -17,7 +19,7 @@ export interface Food {
   id: string;
   categoryId: string;
   name: string;
-  image: string;
+  image: StaticImageData;
   shortDescription: string;
   price: number;
   isPopular: boolean;

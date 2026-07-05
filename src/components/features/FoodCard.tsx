@@ -60,7 +60,7 @@ const FoodCard: FC<FoodCardProps> = ({
       tabIndex={0}
       onKeyDown={handleCardKeyDown}
     >
-      <div className="relative h-40 w-full bg-zinc-100">
+      <div className="relative h-80 w-full bg-zinc-100">
         <Image
           src={food.image}
           alt={food.name}

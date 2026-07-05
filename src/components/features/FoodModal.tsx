@@ -52,8 +52,8 @@ const FoodModal: FC<FoodModalProps> = ({
           className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-xl rounded-t-[28px] bg-white shadow-2xl"
           onClick={(event) => event.stopPropagation()}
         >
-          <div className="mx-auto mt-3 h-1.5 w-16 rounded-full bg-zinc-200" />
-          <div className="relative h-44 w-full overflow-hidden rounded-t-[28px] bg-zinc-100 sm:h-56">
+          {/* <div className="mx-auto mt-3 h-1.5 w-16 rounded-full bg-zinc-200" /> */}
+          <div className="relative h-80 w-full overflow-hidden rounded-t-[28px] bg-zinc-100">
             <Image
               src={food.image}
               alt={food.name}

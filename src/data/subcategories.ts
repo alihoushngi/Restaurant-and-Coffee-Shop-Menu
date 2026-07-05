@@ -18,7 +18,7 @@ export const subcategories = {
 
   "cold-drinks": [
     { id: "mocktail", title: "ماکتیل" },
-    { id: "cold-drink", title: "سرد نوش" },
+    { id: "soda", title: "سرد نوش" },
     { id: "cold-espresso", title: "پایه اسپرسو (سرد)" },
   ],
 

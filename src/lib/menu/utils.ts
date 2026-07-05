@@ -92,7 +92,7 @@ export const getSubcategoriesForCategory = (categoryId: string) => {
     ],
     "hot-drinks": [
       { id: "milk-base", title: "برپایه شیر" },
-      { id: "tea", title: "دمنوش و چایی" },
+      { id: "tea-herbal", title: "دمنوش و چایی" },
       { id: "hot-espresso", title: "پایه اسپرسو" },
     ],
     "cold-drinks": [
