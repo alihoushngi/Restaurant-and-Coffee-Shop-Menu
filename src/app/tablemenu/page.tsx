@@ -13,6 +13,7 @@ import {
   menuCategories,
 } from "@/lib/menu/utils";
 import type { Food } from "@/types/menu";
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const categoryBg = [
@@ -108,12 +109,23 @@ export default function TableMenu() {
             >
               {/* Header */}
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-lg font-bold text-zinc-900">
-                  {category.icon} {category.title}
-                </h2>
-                <span className="text-sm text-zinc-500">
+                <div className="text-sm text-zinc-500 flex flex-col justify-start items-start gap-1">
+                  <span className="text-lg font-bold text-zinc-900">
+                    {category.title}
+                  </span>
                   {visibleFoods.length} آیتم
-                </span>
+                </div>
+                <div className="text-lg font-bold text-zinc-900 flex justify-center items-center gap-1">
+                  <Image
+                    src={category.icon}
+                    alt={category.title}
+                    width={60}
+                    height={60}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
               </div>
 
               {/* Subcategories */}

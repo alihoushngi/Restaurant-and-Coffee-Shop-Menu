@@ -9,7 +9,7 @@ export interface MenuAvailability {
 export interface Category {
   id: string;
   title: string;
-  icon: string;
+  icon: string | StaticImageData;
   image?: string;
   availability: MenuAvailability;
   description?: string;

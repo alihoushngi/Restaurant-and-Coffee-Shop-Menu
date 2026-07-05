@@ -2,6 +2,7 @@
 "use client";
 
 import type { Category } from "@/types/menu";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 interface CategoryTabsProps {
@@ -56,7 +57,7 @@ const CategoryTabs = ({
               data-id={category.id}
               onClick={() => onSelect(category.id)}
               className={`
-                flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition
+                flex shrink-0 items-center gap-1 rounded-full p-2 text-sm font-semibold transition
                 ${
                   isActive
                     ? "bg-[#496a65] text-white shadow"
@@ -66,7 +67,15 @@ const CategoryTabs = ({
                 }
               `}
             >
-              <span>{category.icon}</span>
+              <Image
+                src={category.icon}
+                alt={category.title}
+                width={30}
+                height={30}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                unoptimized
+              />
               <span>{category.title}</span>
 
               {/* optional availability dot */}

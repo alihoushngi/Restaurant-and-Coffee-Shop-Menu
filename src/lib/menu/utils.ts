@@ -5,7 +5,7 @@ import type {
   MenuAvailability,
 } from "@/types/menu";
 
-import categories from "@/data/categories.json";
+import { categories } from "@/data/categories";
 import foodDetails from "@/data/food-details.json";
 import { foodList } from "@/data/foods";
 
