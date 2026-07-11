@@ -126,6 +126,7 @@ import pizzaKebabJunior from "@/assets/Pitza/pitzaj7.jpg";
 import pizzaTurkeyJunior from "@/assets/Pitza/pitzaj8.jpg";
 import pizzaVegetablesJunior from "@/assets/Pitza/pitzaj9.jpg";
 import placholder from "@/assets/placeholder.jpg";
+import teaPotForTwoQelyon from "@/assets/qelyon/qorichayedonafare.jpg";
 import {
   default as abanQelyon,
   default as azarQelyon,
@@ -157,7 +158,6 @@ import {
   default as tabestanQelyon,
   default as tehranNightsQelyon,
 } from "@/assets/qelyon/tabestan.jpg";
-import teaPotForTwoQelyon from "@/assets/qelyon/qorichayedonafare.jpg";
 import caesarSaladGrilled from "@/assets/Salad/sezar1.jpg";
 import caesarSaladFried from "@/assets/Salad/sezar2.jpg";
 import persianCaesarSaladGrilled from "@/assets/Salad/sezar3.jpg";
@@ -186,15 +186,15 @@ import chocolateChipShake from "@/assets/sheykoesmoti/sheykchakletchips.jpg";
 import lotusShake from "@/assets/sheykoesmoti/sheyklotos.jpg";
 import masalaShake from "@/assets/sheykoesmoti/sheykmasala.jpg";
 import vanillaShake from "@/assets/sheykoesmoti/vanil.jpg";
-import englishBreakfast from "@/assets/sobhane/sobhaneenglisi.jpg";
-import rayoOmelette from "@/assets/sobhane/omletrayo.jpg";
-import persianOmelette from "@/assets/sobhane/omletirani.jpg";
-import sausageEgg from "@/assets/sobhane/sosistokhmmorq.jpg";
-import friedEgg from "@/assets/sobhane/nimro.jpg";
-import iranianBreakfast from "@/assets/sobhane/sobhaneirani.jpg";
-import nutellaCroissantBreakfast from "@/assets/sobhane/korosanNotela.jpg";
-import simitTurkeyBreakfast from "@/assets/sobhane/simitboqalamon.jpg";
 import baconEggCroissant from "@/assets/sobhane/korosanbiken.jpg";
+import nutellaCroissantBreakfast from "@/assets/sobhane/korosanNotela.jpg";
+import friedEgg from "@/assets/sobhane/nimro.jpg";
+import persianOmelette from "@/assets/sobhane/omletirani.jpg";
+import rayoOmelette from "@/assets/sobhane/omletrayo.jpg";
+import simitTurkeyBreakfast from "@/assets/sobhane/simitboqalamon.jpg";
+import englishBreakfast from "@/assets/sobhane/sobhaneenglisi.jpg";
+import iranianBreakfast from "@/assets/sobhane/sobhaneirani.jpg";
+import sausageEgg from "@/assets/sobhane/sosistokhmmorq.jpg";
 
 export const foodList = [
   {
@@ -2812,7 +2812,7 @@ export const foodList = [
     availability: {
       type: "hours",
       availableFrom: "08:00",
-      availableTo: "13:00",
+      availableTo: "10:00",
     },
   },
 ];

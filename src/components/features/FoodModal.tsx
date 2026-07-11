@@ -7,7 +7,6 @@ import { HiXMark } from "react-icons/hi2";
 import { AnimatePresence, motion } from "framer-motion";
 
 import AvailabilityIndicator from "@/components/ui/AvailabilityIndicator";
-import BadgePopular from "@/components/ui/BadgePopular";
 import {
   formatPrice,
   getFoodDetailById,
@@ -63,7 +62,7 @@ const FoodModal: FC<FoodModalProps> = ({
               unoptimized
             />
             <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
-              <BadgePopular isPopular={food.isPopular} />
+              {/* <BadgePopular isPopular={food.isPopular} /> */}
               <button
                 type="button"
                 onClick={onClose}
@@ -157,6 +156,18 @@ const FoodModal: FC<FoodModalProps> = ({
               </span>
             </div>
           </div>
+          {!isAvailable && (
+            <div className="absolute inset-0 z-30 flex items-start pt-5 justify-center rounded-t-[28px] bg-zinc-900/45 backdrop-grayscale">
+              <div className="rounded-xl bg-white/95 px-5 py-3 text-center shadow-lg">
+                <p className="font-bold text-zinc-900">
+                  این غذا در حال حاضر قابل سفارش نیست
+                </p>
+                <p className="mt-1 text-sm text-zinc-600">
+                  مشاهده اطلاعات همچنان امکان‌پذیر است.
+                </p>
+              </div>
+            </div>
+          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>

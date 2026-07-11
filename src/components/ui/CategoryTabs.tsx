@@ -44,7 +44,7 @@ const CategoryTabs = ({
     <div className="sticky top-0 z-50 mb-4">
       <div
         ref={containerRef}
-        className="flex gap-2 overflow-x-auto rounded-2xl bg-white/70 p-2 backdrop-blur-md"
+        className="flex gap-1 overflow-x-auto rounded-2xl bg-[#7a394a]/90 p-2 backdrop-blur-md"
       >
         {categories.map((category) => {
           const isActive = category.id === activeCategoryId;
@@ -57,7 +57,7 @@ const CategoryTabs = ({
               data-id={category.id}
               onClick={() => onSelect(category.id)}
               className={`
-                flex shrink-0 items-center gap-1 rounded-full p-2 text-sm font-semibold transition
+                flex shrink-0 items-center gap-1 rounded-xl p-2 text-sm font-semibold transition
                 ${
                   isActive
                     ? "bg-[#496a65] text-white shadow"

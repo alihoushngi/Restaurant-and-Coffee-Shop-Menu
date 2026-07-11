@@ -6,7 +6,6 @@ import type { FC, KeyboardEvent, MouseEvent } from "react";
 import { motion } from "framer-motion";
 
 import AvailabilityIndicator from "@/components/ui/AvailabilityIndicator";
-import BadgePopular from "@/components/ui/BadgePopular";
 import {
   formatPrice,
   getCategoryById,
@@ -54,7 +53,7 @@ const FoodCard: FC<FoodCardProps> = ({
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
-      className="overflow-hidden rounded-[24px] border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+      className="relative overflow-hidden rounded-[24px] border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
       onClick={onOpen}
       role="button"
       tabIndex={0}
@@ -70,8 +69,8 @@ const FoodCard: FC<FoodCardProps> = ({
           unoptimized
         />
         <div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
-          <BadgePopular isPopular={food.isPopular} />
-          <div className="rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-zinc-600 shadow-sm">
+          {/* <BadgePopular isPopular={food.isPopular} /> */}
+          <div className="rounded-full bg-[#7a394a] px-2.5 py-1 text-xs font-medium text-white shadow-sm">
             {category?.title}
           </div>
         </div>
@@ -82,7 +81,7 @@ const FoodCard: FC<FoodCardProps> = ({
                 <button
                   type="button"
                   onClick={handleRemoveClick}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-100 text-lg font-semibold text-zinc-700"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7a394a] text-lg font-semibold text-white"
                   aria-label="کاهش تعداد"
                 >
                   −
@@ -94,7 +93,7 @@ const FoodCard: FC<FoodCardProps> = ({
                   type="button"
                   onClick={handleAddClick}
                   disabled={!food.favoriteEnabled || !isAvailable}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7a394a] text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-green-700 text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
                   aria-label="افزایش تعداد"
                 >
                   +
@@ -105,7 +104,7 @@ const FoodCard: FC<FoodCardProps> = ({
                 type="button"
                 onClick={handleAddClick}
                 disabled={!food.favoriteEnabled || !isAvailable}
-                className="rounded-full bg-[#7a394a] px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-full bg-green-700 px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
               >
                 افزودن
               </button>
@@ -133,11 +132,18 @@ const FoodCard: FC<FoodCardProps> = ({
             {quantity} عدد در لیست سفارش
           </p>
         ) : null}
-        {!isAvailable ? (
+        {!isAvailable && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-zinc-900/20 backdrop-grayscale">
+            {/* <div className="rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-zinc-800 shadow">
+              در حال حاضر قابل سفارش نیست
+            </div> */}
+          </div>
+        )}
+        {/* {!isAvailable ? (
           <p className="mt-2 text-sm font-medium text-rose-500">
             در حال حاضر قابل سفارش نیست
           </p>
-        ) : null}
+        ) : null} */}
       </div>
     </motion.article>
   );

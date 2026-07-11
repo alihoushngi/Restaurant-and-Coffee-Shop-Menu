@@ -26,6 +26,9 @@ export interface Food {
   favoriteEnabled: boolean;
   availability: MenuAvailability;
   subcategoryId?: string;
+  description?: string;
+  ingredients?: string[];
+  preparationTime?: number;
 }
 
 export interface FoodDetail {
