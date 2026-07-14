@@ -2,8 +2,11 @@ import { APIRoutes } from "./routes.type";
 
 export const getAPIRoute = (): APIRoutes => {
   const routes: APIRoutes = {
-    auth: {
-      login: { path: "auth/login" },
+    menu: {
+      DineInCategory: { path: "DineInCategory" },
+      DineInItems: { path: "DineInItems" },
+      DeliveryItems: { path: "DeliveryItems" },
+      DeliveryCategory: { path: "DeliveryCategory" },
     },
   };
   return routes;

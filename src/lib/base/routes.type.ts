@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Interface for a route with a path and a getter function
 interface Route {
   path: string;
@@ -5,11 +6,14 @@ interface Route {
 }
 
 // Interface for a collection of routes
-interface AuthRoutes {
-  login: Route;
+interface MenuRoutes {
+  DineInCategory: Route;
+  DineInItems: Route;
+  DeliveryCategory: Route;
+  DeliveryItems: Route;
 }
 
 // Main interface for the full route object
 export interface APIRoutes {
-  auth: AuthRoutes;
+  menu: MenuRoutes;
 }

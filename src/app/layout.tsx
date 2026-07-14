@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 
 import { FiraFont, VazirFont } from "@/app/font";
 import RegisterSW from "@/components/layout/RegisterSW";
+import QueryProvider from "@/components/providers/QueryProvider";
 import ToastViewport from "@/components/ui/ToastViewport";
 import "@/styles/globals.css";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = defaultMetadata;
@@ -30,7 +31,9 @@ export default function RootLayout({
       <body style={{ backgroundColor: "#f6f0e8" }}>
         <RegisterSW />
         <ToastViewport />
-        <Suspense fallback={null}>{children}</Suspense>
+        <Suspense fallback={null}>
+          <QueryProvider>{children}</QueryProvider>
+        </Suspense>
       </body>
     </html>
   );

@@ -5,6 +5,8 @@ import FoodCard from "@/components/features/FoodCard";
 import FoodModal from "@/components/features/FoodModal";
 import PageShell from "@/components/layout/PageShell";
 import CategoryTabs from "@/components/ui/CategoryTabs";
+import { useDineInCategory } from "@/hooks/menu/useDineInCategory";
+import { useDineInItems } from "@/hooks/menu/useDineInItems";
 import { useFavorites } from "@/hooks/useFavorites";
 import {
   getFoodsByCategory,
@@ -34,6 +36,15 @@ export default function TableMenu() {
     Record<string, string>
   >({});
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  const { data, isLoading, isError, error } = useDineInCategory();
+
+  console.log({
+    data,
+    isLoading,
+    isError,
+    error,
+  });
 
   const categoriesWithFoods = useMemo(() => {
     return menuCategories.map((category) => ({
