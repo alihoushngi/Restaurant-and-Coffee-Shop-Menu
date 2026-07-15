@@ -1,6 +1,5 @@
-import type { ReactNode } from "react";
-
 import BottomNavigation from "@/components/layout/BottomNavigation";
+import type { ReactNode } from "react";
 
 interface PageShellProps {
   children: ReactNode;
@@ -20,7 +19,7 @@ const PageShell = ({
       >
         {children}
       </div>
-      {showBottomNav ? <BottomNavigation /> : null}
+      {showBottomNav && <BottomNavigation />}
     </main>
   );
 };

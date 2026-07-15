@@ -1,18 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { getAllFavorites, saveFavorites } from "@/lib/menu/utils";
 import { showToast } from "@/lib/toast";
 import type { FavoriteEntry } from "@/types/menu";
 
 export function useFavorites() {
-  const [favorites, setFavorites] = useState<FavoriteEntry[]>([]);
-  const [hydrated, setHydrated] = useState(false);
+  const [favorites, setFavorites] = useState<FavoriteEntry[]>(() => {
+    if (typeof window === "undefined") return [];
 
-  useEffect(() => {
-    setFavorites(getAllFavorites());
-    setHydrated(true);
+    return getAllFavorites();
+  });
+
+  const hydrated = useMemo(() => {
+    return typeof window !== "undefined";
   }, []);
 
   const addToFavorites = (foodId: string, quantity = 1) => {
@@ -20,40 +22,55 @@ export function useFavorites() {
 
     setFavorites((current) => {
       const exists = current.find((item) => item.foodId === foodId);
+
       const next = exists
         ? current.map((item) =>
             item.foodId === foodId
-              ? { ...item, quantity: item.quantity + quantity }
+              ? {
+                  ...item,
+                  quantity: item.quantity + quantity,
+                }
               : item,
           )
-        : [...current, { foodId, quantity, addedAt: new Date().toISOString() }];
+        : [
+            ...current,
+            {
+              foodId,
+              quantity,
+              addedAt: new Date().toISOString(),
+            },
+          ];
 
       saveFavorites(next);
       showToast("به لیست سفارش اضافه شد");
+
       return next;
     });
   };
 
   const removeFromFavorites = (foodId: string, quantity = 1) => {
     setFavorites((current) => {
-      const exists = current.find((item) => item.foodId === foodId);
-      if (!exists) return current;
-
       const next = current
         .map((item) => {
           if (item.foodId !== foodId) return item;
+
           const nextQuantity = item.quantity - quantity;
-          return nextQuantity > 0 ? { ...item, quantity: nextQuantity } : null;
+
+          return nextQuantity > 0
+            ? {
+                ...item,
+                quantity: nextQuantity,
+              }
+            : null;
         })
         .filter((item): item is FavoriteEntry => Boolean(item));
 
       saveFavorites(next);
-      if (
-        next.length !== current.length ||
-        next.some((item) => item.foodId !== foodId)
-      ) {
+
+      if (next.length < current.length) {
         showToast("از لیست سفارش حذف شد");
       }
+
       return next;
     });
   };
@@ -63,10 +80,13 @@ export function useFavorites() {
     saveFavorites([]);
   };
 
-  const isFavorite = (foodId: string) =>
-    favorites.some((item) => item.foodId === foodId);
-  const getQuantity = (foodId: string) =>
-    favorites.find((item) => item.foodId === foodId)?.quantity ?? 0;
+  const isFavorite = (foodId: string) => {
+    return favorites.some((item) => item.foodId === foodId);
+  };
+
+  const getQuantity = (foodId: string) => {
+    return favorites.find((item) => item.foodId === foodId)?.quantity ?? 0;
+  };
 
   return {
     favorites,

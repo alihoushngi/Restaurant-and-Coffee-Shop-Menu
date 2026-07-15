@@ -1,18 +1,11 @@
 "use client";
-
+import AvailabilityIndicator from "@/components/ui/AvailabilityIndicator";
+import { formatPrice } from "@/lib/menu/utils";
+import type { Food } from "@/types/menu";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import type { FC } from "react";
 import { HiXMark } from "react-icons/hi2";
-
-import { AnimatePresence, motion } from "framer-motion";
-
-import AvailabilityIndicator from "@/components/ui/AvailabilityIndicator";
-import {
-  formatPrice,
-  getFoodDetailById,
-  isAvailabilityActive,
-} from "@/lib/menu/utils";
-import type { Food } from "@/types/menu";
 
 interface FoodModalProps {
   food: Food | null;
@@ -31,8 +24,7 @@ const FoodModal: FC<FoodModalProps> = ({
 }) => {
   if (!food) return null;
 
-  const detail = getFoodDetailById(food.id);
-  const isAvailable = isAvailabilityActive(food.availability);
+  const isAvailable = true;
 
   return (
     <AnimatePresence>
@@ -49,9 +41,8 @@ const FoodModal: FC<FoodModalProps> = ({
           exit={{ y: "100%" }}
           transition={{ type: "spring", stiffness: 220, damping: 24 }}
           className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-xl rounded-t-[28px] bg-white shadow-2xl"
-          onClick={(event) => event.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         >
-          {/* <div className="mx-auto mt-3 h-1.5 w-16 rounded-full bg-zinc-200" /> */}
           <div className="relative h-80 w-full overflow-hidden rounded-t-[28px] bg-zinc-100">
             <Image
               src={food.image}
@@ -62,12 +53,10 @@ const FoodModal: FC<FoodModalProps> = ({
               unoptimized
             />
             <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
-              {/* <BadgePopular isPopular={food.isPopular} /> */}
               <button
                 type="button"
                 onClick={onClose}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow-sm"
-                aria-label="بستن"
               >
                 <HiXMark className="h-5 w-5 text-zinc-700" />
               </button>
@@ -89,7 +78,7 @@ const FoodModal: FC<FoodModalProps> = ({
                     <button
                       type="button"
                       onClick={onAddToOrder}
-                      disabled={!food.favoriteEnabled || !isAvailable}
+                      disabled={!isAvailable}
                       className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7a394a] text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       +
@@ -99,7 +88,7 @@ const FoodModal: FC<FoodModalProps> = ({
                   <button
                     type="button"
                     onClick={onAddToOrder}
-                    disabled={!food.favoriteEnabled || !isAvailable}
+                    disabled={!isAvailable}
                     className="rounded-full bg-[#7a394a] px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     افزودن
@@ -108,6 +97,7 @@ const FoodModal: FC<FoodModalProps> = ({
               </div>
             </div>
           </div>
+
           <div className="space-y-3 p-4 pb-6 sm:space-y-4 sm:p-5 sm:pb-7">
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -120,54 +110,20 @@ const FoodModal: FC<FoodModalProps> = ({
                 {formatPrice(food.price)}
               </div>
             </div>
+
             <div>
-              <AvailabilityIndicator availability={food.availability} />
+              <AvailabilityIndicator
+                availability={food.availability ?? { type: "always" }}
+              />
             </div>
-            {!isAvailable ? (
-              <p className="rounded-2xl bg-rose-50 p-3 text-sm font-medium text-rose-600">
-                در حال حاضر قابل سفارش نیست
-              </p>
-            ) : null}
+
             <div className="rounded-2xl bg-zinc-50 p-4">
               <h3 className="font-semibold text-zinc-900">توضیحات</h3>
               <p className="mt-2 text-sm leading-7 text-zinc-600">
-                {detail?.description}
+                {food.summary || "توضیحات این آیتم در حال حاضر موجود نیست."}
               </p>
             </div>
-            <div className="rounded-2xl bg-zinc-50 p-4">
-              <h3 className="font-semibold text-zinc-900">مواد اولیه</h3>
-              <ul className="mt-2 flex flex-wrap gap-2">
-                {detail?.ingredients?.map((ingredient) => (
-                  <li
-                    key={ingredient}
-                    className="rounded-full bg-white px-3 py-1 text-sm text-zinc-600 shadow-sm"
-                  >
-                    {ingredient}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex items-center justify-between rounded-2xl border border-zinc-200 p-4">
-              <span className="text-sm font-medium text-zinc-500">
-                حداقل زمان آماده‌سازی
-              </span>
-              <span className="text-sm font-semibold text-zinc-900">
-                {detail?.preparationTime} دقیقه
-              </span>
-            </div>
           </div>
-          {!isAvailable && (
-            <div className="absolute inset-0 z-30 flex items-start pt-5 justify-center rounded-t-[28px] bg-zinc-900/45 backdrop-grayscale">
-              <div className="rounded-xl bg-white/95 px-5 py-3 text-center shadow-lg">
-                <p className="font-bold text-zinc-900">
-                  این غذا در حال حاضر قابل سفارش نیست
-                </p>
-                <p className="mt-1 text-sm text-zinc-600">
-                  مشاهده اطلاعات همچنان امکان‌پذیر است.
-                </p>
-              </div>
-            </div>
-          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>

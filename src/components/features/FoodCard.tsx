@@ -1,17 +1,10 @@
 "use client";
-
+import AvailabilityIndicator from "@/components/ui/AvailabilityIndicator";
+import { formatPrice } from "@/lib/menu/utils";
+import type { Food } from "@/types/menu";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import type { FC, KeyboardEvent, MouseEvent } from "react";
-
-import { motion } from "framer-motion";
-
-import AvailabilityIndicator from "@/components/ui/AvailabilityIndicator";
-import {
-  formatPrice,
-  getCategoryById,
-  isAvailabilityActive,
-} from "@/lib/menu/utils";
-import type { Food } from "@/types/menu";
 
 interface FoodCardProps {
   food: Food;
@@ -28,8 +21,8 @@ const FoodCard: FC<FoodCardProps> = ({
   onRemoveFromOrder,
   onOpen,
 }) => {
-  const category = getCategoryById(food.categoryId);
-  const isAvailable = isAvailabilityActive(food.availability);
+  const isAvailable = true;
+  const categoryTitle = "دسته‌بندی";
 
   const handleAddClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -69,9 +62,8 @@ const FoodCard: FC<FoodCardProps> = ({
           unoptimized
         />
         <div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
-          {/* <BadgePopular isPopular={food.isPopular} /> */}
           <div className="rounded-full bg-[#7a394a] px-2.5 py-1 text-xs font-medium text-white shadow-sm">
-            {category?.title}
+            {categoryTitle}
           </div>
         </div>
         <div className="absolute bottom-3 left-3">
@@ -82,7 +74,6 @@ const FoodCard: FC<FoodCardProps> = ({
                   type="button"
                   onClick={handleRemoveClick}
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7a394a] text-lg font-semibold text-white"
-                  aria-label="کاهش تعداد"
                 >
                   −
                 </button>
@@ -94,7 +85,6 @@ const FoodCard: FC<FoodCardProps> = ({
                   onClick={handleAddClick}
                   disabled={!food.favoriteEnabled || !isAvailable}
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-green-700 text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
-                  aria-label="افزایش تعداد"
                 >
                   +
                 </button>
@@ -116,34 +106,24 @@ const FoodCard: FC<FoodCardProps> = ({
         <div className="flex items-start justify-between gap-3">
           <div>
             <h3 className="text-base font-bold text-zinc-900">{food.name}</h3>
-            <p className="mt-1 text-sm text-zinc-500">
+            <p className="mt-1 text-sm text-zinc-500 line-clamp-2">
               {food.shortDescription}
             </p>
           </div>
-          <span className="text-sm font-semibold text-amber-600">
+          <span className="text-sm font-semibold text-amber-600 whitespace-nowrap">
             {formatPrice(food.price)}
           </span>
         </div>
         <div className="mt-4">
-          <AvailabilityIndicator availability={food.availability} />
+          <AvailabilityIndicator
+            availability={food.availability ?? { type: "always" }}
+          />
         </div>
-        {quantity > 0 ? (
+        {quantity > 0 && (
           <p className="mt-2 text-sm font-medium text-[#496a65]">
             {quantity} عدد در لیست سفارش
           </p>
-        ) : null}
-        {!isAvailable && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center bg-zinc-900/20 backdrop-grayscale">
-            {/* <div className="rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-zinc-800 shadow">
-              در حال حاضر قابل سفارش نیست
-            </div> */}
-          </div>
         )}
-        {/* {!isAvailable ? (
-          <p className="mt-2 text-sm font-medium text-rose-500">
-            در حال حاضر قابل سفارش نیست
-          </p>
-        ) : null} */}
       </div>
     </motion.article>
   );

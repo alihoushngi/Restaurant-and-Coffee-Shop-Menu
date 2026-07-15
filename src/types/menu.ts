@@ -1,50 +1,97 @@
-import { StaticImageData } from "next/image";
+export interface MenuCategory {
+  Id: number;
 
-export interface MenuAvailability {
-  type: "always" | "hours";
-  availableFrom?: string;
-  availableTo?: string;
+  Title: string;
+
+  Rank: number;
+
+  ParentId: number | null;
+
+  OtherParentId: number | null;
+
+  BeforeLunchRank: number;
+
+  Delivery: boolean;
+
+  HasChild: boolean;
 }
 
-export interface Category {
-  id: string;
-  title: string;
-  icon: string | StaticImageData;
-  image?: string;
-  availability: MenuAvailability;
-  description?: string;
+export interface MenuItem {
+  Id: number;
+
+  Title: string;
+
+  Summary: string;
+
+  Rank: number;
+
+  CategoryId: number;
+
+  CategoryParentId: number | null;
+
+  Price: number;
+
+  SmallPrice: number | null;
+
+  Enable: boolean;
+
+  HasPic: boolean;
+
+  Delivery: boolean;
+
+  JustTestTime: boolean;
+
+  HideForMidweekBreakfast: boolean;
+
+  ImageUrl: string;
 }
+
+export interface MenuTreeNode {
+  category: MenuCategory;
+
+  foods: Food[];
+
+  subcategories: MenuTreeNode[];
+}
+
+export type MenuAvailability =
+  | {
+      type: "always";
+    }
+  | {
+      type: "hours";
+      availableFrom: string;
+      availableTo: string;
+    };
 
 export interface Food {
-  id: string;
-  categoryId: string;
+  id: string | number;
+
+  categoryId: string | number;
+
   name: string;
-  image: StaticImageData;
+
+  image: string;
+
   shortDescription: string;
+
   price: number;
-  isPopular: boolean;
-  favoriteEnabled: boolean;
-  availability: MenuAvailability;
-  subcategoryId?: string;
-  description?: string;
-  ingredients?: string[];
-  preparationTime?: number;
-}
 
-export interface FoodDetail {
-  foodId: string;
-  description: string;
-  ingredients: string[];
-  preparationTime: number;
-}
+  isPopular?: boolean;
 
-export interface FavoriteRecord {
-  foodId: string;
-  addedAt: string;
+  favoriteEnabled?: boolean;
+
+  availability?: MenuAvailability;
+
+  rank?: number;
+
+  summary?: string;
 }
 
 export interface FavoriteEntry {
   foodId: string;
+
   quantity: number;
+
   addedAt: string;
 }
