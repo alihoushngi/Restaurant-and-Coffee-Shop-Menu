@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://nextbase.ir
+Host: https://rayocafe.ir
 
 # Sitemaps
-Sitemap: https://nextbase.ir/sitemap.xml
+Sitemap: https://rayocafe.ir/sitemap.xml

@@ -201,13 +201,14 @@ export default function TableMenu() {
                   alt={category.Title}
                   width={56}
                   height={56}
+                  quality={75}
+                  sizes="56px"
                   className="
                       h-14
                       w-14
                       rounded-2xl
                       object-cover
                     "
-                  unoptimized
                 />
               </div>
 

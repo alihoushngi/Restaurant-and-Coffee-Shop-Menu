@@ -1,23 +1,42 @@
 import type { NextConfig } from "next";
-
 import withPWA from "next-pwa";
 
-// PWA config setup
 const withPwa = withPWA({
   dest: "public",
-  // disable: process.env.NODE_ENV === "development",
   register: true,
   skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
 });
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+
   experimental: {
     serverActions: {
       bodySizeLimit: "1mb",
       allowedOrigins: ["*"],
     },
   },
+
+  // ==================== Image Optimization ====================
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+    ],
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2592000,
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+
+  // ==================== Headers Security ====================
   async headers() {
     return [
       {

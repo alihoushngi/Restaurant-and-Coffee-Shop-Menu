@@ -1,11 +1,11 @@
 {
-  "name": "Next Base",
-  "short_name": "next-base",
+  "name": "Rayo",
+  "short_name": "rayo",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#317EFB",
-  "description": "A powerful and developer-friendly boilerplate to jump start your Next.js projects with everything already configured — just clone and start building.",
+  "background_color": "#f6f0e8",
+  "theme_color": "#874d5b",
+  "description": "Rayo is a frontend-only digital menu system designed for cafes and restaurants.",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",

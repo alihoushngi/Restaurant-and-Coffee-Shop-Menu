@@ -8,7 +8,7 @@ export const defaultMetadata: Metadata = {
   authors: [
     {
       name: "رایو",
-      url: "https://rayo-menu.ir/",
+      url: "https://rayocafe.ir/",
     },
   ],
   keywords: [
@@ -29,14 +29,14 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fa_IR",
-    url: "https://rayo-menu.ir/",
+    url: "https://rayocafe.ir/",
     siteName: "رایو",
     title: "رایو | منوی کافه",
     description:
       "منوی دیجیتال کافه رایو با انتخابی از قهوه، نوشیدنی، کیک، صبحانه و دسرهای تازه.",
     images: [
       {
-        url: "https://rayo-menu.ir/og-image.jpg",
+        url: "https://rayocafe.ir/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "منوی دیجیتال کافه رایو",
@@ -49,7 +49,7 @@ export const defaultMetadata: Metadata = {
     description:
       "منوی دیجیتال کافه رایو با انتخابی از قهوه، نوشیدنی، کیک، صبحانه و دسرهای تازه.",
     creator: "@rayo",
-    images: ["https://rayo-menu.ir/og-image.jpg"],
+    images: ["https://rayocafe.ir/og-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",

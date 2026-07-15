@@ -48,9 +48,9 @@ const FoodModal: FC<FoodModalProps> = ({
               src={food.image}
               alt={food.name}
               fill
+              quality={75}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
-              unoptimized
             />
             <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
               <button

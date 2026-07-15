@@ -15,6 +15,8 @@ const Header: FC<HeaderProps> = () => {
         alt="Logo"
         width={1080}
         height={1080}
+        quality={75}
+        sizes="(max-width: 768px) 100vw, 50vw"
         className="w-14 h-14 object-cover"
       />
       {/* <p className="text-sm font-semibold text-amber-600">رایو</p> */}

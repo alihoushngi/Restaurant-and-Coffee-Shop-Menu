@@ -110,14 +110,14 @@ export const buildMenuTree = (
 export const getAllFavorites = (): FavoriteEntry[] => {
   if (typeof window === "undefined") return [];
 
-  const stored = window.localStorage.getItem("avoli-order-items");
+  const stored = window.localStorage.getItem("Rayo-order-items");
 
   if (stored) {
     return JSON.parse(stored) as FavoriteEntry[];
   }
 
   // Legacy support
-  const legacy = window.localStorage.getItem("avoli-favorites");
+  const legacy = window.localStorage.getItem("Rayo-favorites");
 
   if (legacy) {
     const parsed = JSON.parse(legacy) as Array<string | { foodId: string }>;
@@ -145,7 +145,7 @@ export const getAllFavorites = (): FavoriteEntry[] => {
 export const saveFavorites = (favorites: FavoriteEntry[]) => {
   if (typeof window === "undefined") return;
 
-  window.localStorage.setItem("avoli-order-items", JSON.stringify(favorites));
+  window.localStorage.setItem("Rayo-order-items", JSON.stringify(favorites));
 };
 
 export type MenuAvailability =

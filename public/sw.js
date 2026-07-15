@@ -1,17 +1,17 @@
 if (!self.define) {
   let e,
-    a = {};
-  const s = (s, i) => (
-    (s = new URL(s + ".js", i).href),
-    a[s] ||
-      new Promise((a) => {
+    s = {};
+  const a = (a, i) => (
+    (a = new URL(a + ".js", i).href),
+    s[a] ||
+      new Promise((s) => {
         if ("document" in self) {
           const e = document.createElement("script");
-          ((e.src = s), (e.onload = a), document.head.appendChild(e));
-        } else ((e = s), importScripts(s), a());
+          ((e.src = a), (e.onload = s), document.head.appendChild(e));
+        } else ((e = a), importScripts(a), s());
       }).then(() => {
-        let e = a[s];
-        if (!e) throw new Error(`Module ${s} didn’t register its module`);
+        let e = s[a];
+        if (!e) throw new Error(`Module ${a} didn’t register its module`);
         return e;
       })
   );
@@ -20,11 +20,11 @@ if (!self.define) {
       e ||
       ("document" in self ? document.currentScript.src : "") ||
       location.href;
-    if (a[n]) return;
+    if (s[n]) return;
     let c = {};
-    const r = (e) => s(e, n),
+    const r = (e) => a(e, n),
       o = { module: { uri: n }, exports: c, require: r };
-    a[n] = Promise.all(i.map((e) => o[e] || r(e))).then((e) => (t(...e), c));
+    s[n] = Promise.all(i.map((e) => o[e] || r(e))).then((e) => (t(...e), c));
   };
 }
 define(["./workbox-4754cb34"], function (e) {
@@ -35,11 +35,11 @@ define(["./workbox-4754cb34"], function (e) {
     e.precacheAndRoute(
       [
         {
-          url: "/_next/static/BHpaB2pUpJnhgz3xtmME7/_buildManifest.js",
+          url: "/_next/static/3bd9VaYfeyl6Y79sL9Cjg/_buildManifest.js",
           revision: "f00742126510e471f485eb1ff783442a",
         },
         {
-          url: "/_next/static/BHpaB2pUpJnhgz3xtmME7/_ssgManifest.js",
+          url: "/_next/static/3bd9VaYfeyl6Y79sL9Cjg/_ssgManifest.js",
           revision: "b6652df95db52feb4daf4eca35380933",
         },
         {
@@ -55,12 +55,12 @@ define(["./workbox-4754cb34"], function (e) {
           revision: "215e5051988c3dde",
         },
         {
-          url: "/_next/static/chunks/592-0f75615990a15cda.js",
-          revision: "0f75615990a15cda",
+          url: "/_next/static/chunks/592-11165f71f1450486.js",
+          revision: "11165f71f1450486",
         },
         {
-          url: "/_next/static/chunks/600-00738d4085dfdd2c.js",
-          revision: "00738d4085dfdd2c",
+          url: "/_next/static/chunks/600-329c7e19d71701b8.js",
+          revision: "329c7e19d71701b8",
         },
         {
           url: "/_next/static/chunks/658-d42c7f47909ad26a.js",
@@ -79,28 +79,28 @@ define(["./workbox-4754cb34"], function (e) {
           revision: "cbe1211bca7de872",
         },
         {
-          url: "/_next/static/chunks/app/deliverymenu/page-97a89b9739ec2740.js",
-          revision: "97a89b9739ec2740",
+          url: "/_next/static/chunks/app/deliverymenu/page-8c18c10dc7c20ae0.js",
+          revision: "8c18c10dc7c20ae0",
         },
         {
-          url: "/_next/static/chunks/app/favorites/page-ad76d5f41562664f.js",
-          revision: "ad76d5f41562664f",
+          url: "/_next/static/chunks/app/favorites/page-71c56d0009241e07.js",
+          revision: "71c56d0009241e07",
         },
         {
           url: "/_next/static/chunks/app/layout-6bb001d4966a0ad5.js",
           revision: "6bb001d4966a0ad5",
         },
         {
-          url: "/_next/static/chunks/app/page-eed154626d885409.js",
-          revision: "eed154626d885409",
+          url: "/_next/static/chunks/app/page-a7f4576ddde828e7.js",
+          revision: "a7f4576ddde828e7",
         },
         {
-          url: "/_next/static/chunks/app/search/page-ac2e9cf0f12455c8.js",
-          revision: "ac2e9cf0f12455c8",
+          url: "/_next/static/chunks/app/search/page-319f5d17f8d195ff.js",
+          revision: "319f5d17f8d195ff",
         },
         {
-          url: "/_next/static/chunks/app/tablemenu/page-cae0091664422670.js",
-          revision: "cae0091664422670",
+          url: "/_next/static/chunks/app/tablemenu/page-1b21f549f659944a.js",
+          revision: "1b21f549f659944a",
         },
         {
           url: "/_next/static/chunks/f7333993-a1f79f7f7343499f.js",
@@ -111,12 +111,12 @@ define(["./workbox-4754cb34"], function (e) {
           revision: "228d67440a9d5288",
         },
         {
-          url: "/_next/static/chunks/main-aab2a26464b27016.js",
-          revision: "aab2a26464b27016",
-        },
-        {
           url: "/_next/static/chunks/main-app-7098282e42e585e8.js",
           revision: "7098282e42e585e8",
+        },
+        {
+          url: "/_next/static/chunks/main-c066c71caaa3016b.js",
+          revision: "c066c71caaa3016b",
         },
         {
           url: "/_next/static/chunks/next/dist/client/components/builtin/app-error-aba28f88d5781771.js",
@@ -248,24 +248,24 @@ define(["./workbox-4754cb34"], function (e) {
         },
         {
           url: "/icons/icon-192x192.png",
-          revision: "648a5f0c10a3ca66e36a70f2e80975d2",
+          revision: "e4c71b58ad76e01a8c757b88ad5295bf",
         },
         {
           url: "/icons/icon-512x512.png",
-          revision: "0b49387f29e6a4dbd15e464bd20973b1",
+          revision: "bc5821b27c47a3664ca1fc5cdc74db1d",
         },
-        { url: "/manifest.json", revision: "0c835291c842f6626e9815932c0aade5" },
-        { url: "/robots.txt", revision: "1c3c6067d9b6d7d8958642b8d89c88ce" },
+        { url: "/manifest.json", revision: "2ccb574cafa39b222a3c3e5e2f4de20a" },
+        { url: "/robots.txt", revision: "244afbb9acda396b8e7066a736b69617" },
         {
           url: "/screenshots/homepage-mobile.png",
-          revision: "0518217df1178bb4a364c132a8e58ff7",
+          revision: "e6ea85c1938024a6f481e4207fd45968",
         },
         {
           url: "/screenshots/homepage.png",
-          revision: "1db33fb2953fc0e04fbd1f07419634d4",
+          revision: "a69bdbed0d127b89a2828e1295348145",
         },
-        { url: "/sitemap-0.xml", revision: "a398e0ac938b670459a85daa9b52f286" },
-        { url: "/sitemap.xml", revision: "b7b76fc2010f8405ebaf68aae78daed8" },
+        { url: "/sitemap-0.xml", revision: "9b8ed861048c1ff1d7adafeb18e30c85" },
+        { url: "/sitemap.xml", revision: "ef70b05a94e475cf27094daef992ae40" },
       ],
       { ignoreURLParametersMatching: [] },
     ),
@@ -278,17 +278,17 @@ define(["./workbox-4754cb34"], function (e) {
           {
             cacheWillUpdate: async ({
               request: e,
-              response: a,
-              event: s,
+              response: s,
+              event: a,
               state: i,
             }) =>
-              a && "opaqueredirect" === a.type
-                ? new Response(a.body, {
+              s && "opaqueredirect" === s.type
+                ? new Response(s.body, {
                     status: 200,
                     statusText: "OK",
-                    headers: a.headers,
+                    headers: s.headers,
                   })
-                : a,
+                : s,
           },
         ],
       }),
@@ -409,8 +409,8 @@ define(["./workbox-4754cb34"], function (e) {
     e.registerRoute(
       ({ url: e }) => {
         if (!(self.origin === e.origin)) return !1;
-        const a = e.pathname;
-        return !a.startsWith("/api/auth/") && !!a.startsWith("/api/");
+        const s = e.pathname;
+        return !s.startsWith("/api/auth/") && !!s.startsWith("/api/");
       },
       new e.NetworkFirst({
         cacheName: "apis",

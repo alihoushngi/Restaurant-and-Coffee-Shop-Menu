@@ -1,4 +1,4 @@
-# Avoli Cafe Menu
+# Rayo Cafe Menu
 
 Modern mobile-first Persian digital menu for cafes.
 
@@ -6,7 +6,7 @@ Modern mobile-first Persian digital menu for cafes.
 
 # Overview
 
-Avoli is a frontend-only digital menu system designed for cafes and restaurants.
+Rayo is a frontend-only digital menu system designed for cafes and restaurants.
 
 Users can browse categories, view food details, save favorites, and check food availability.
 

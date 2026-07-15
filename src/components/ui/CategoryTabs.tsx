@@ -101,11 +101,12 @@ const CategoryTabs = ({
                 alt={category.Title}
                 width={30}
                 height={30}
+                quality={75}
+                sizes="56px"
                 className="
                   rounded-lg
                   object-cover
                 "
-                unoptimized
               />
 
               <span>{category.Title}</span>

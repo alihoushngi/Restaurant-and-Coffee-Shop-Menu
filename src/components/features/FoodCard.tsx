@@ -4,7 +4,12 @@ import { formatPrice } from "@/lib/menu/utils";
 import type { Food } from "@/types/menu";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import type { FC, KeyboardEvent, MouseEvent } from "react";
+import {
+  useCallback,
+  type FC,
+  type KeyboardEvent,
+  type MouseEvent,
+} from "react";
 
 interface FoodCardProps {
   food: Food;
@@ -24,22 +29,31 @@ const FoodCard: FC<FoodCardProps> = ({
   const isAvailable = true;
   const categoryTitle = "دسته‌بندی";
 
-  const handleAddClick = (event: MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    onAddToOrder();
-  };
+  const handleAddClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      onAddToOrder();
+    },
+    [onAddToOrder],
+  );
 
-  const handleRemoveClick = (event: MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    onRemoveFromOrder();
-  };
+  const handleRemoveClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      onRemoveFromOrder();
+    },
+    [onRemoveFromOrder],
+  );
 
-  const handleCardKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onOpen();
-    }
-  };
+  const handleCardKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLElement>) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        onOpen();
+      }
+    },
+    [onOpen],
+  );
 
   return (
     <motion.article
@@ -57,9 +71,9 @@ const FoodCard: FC<FoodCardProps> = ({
           src={food.image}
           alt={food.name}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          quality={75}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover"
-          unoptimized
         />
         <div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
           <div className="rounded-full bg-[#7a394a] px-2.5 py-1 text-xs font-medium text-white shadow-sm">
@@ -128,5 +142,7 @@ const FoodCard: FC<FoodCardProps> = ({
     </motion.article>
   );
 };
+
+FoodCard.displayName = "FoodCard";
 
 export default FoodCard;

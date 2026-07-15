@@ -34,9 +34,11 @@ export default function Home() {
           <div className="mb-2 overflow-hidden rounded-3xl bg-white p-4 shadow-sm">
             <Image
               src={Logo}
-              alt="Avoli Cafe"
+              alt="Rayo Cafe"
               width={80}
               height={80}
+              quality={75}
+              sizes="80px"
               priority
               className="object-contain"
             />
@@ -95,7 +97,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="mt-8 text-center text-xs text-zinc-400">
-          Avoli Cafe Menu © 2026
+          Rayo Cafe Menu © 2026
         </footer>
       </div>
     </main>

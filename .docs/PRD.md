@@ -1,8 +1,8 @@
-# Avoli Cafe Menu — Product Requirement Document
+# Rayo Cafe Menu — Product Requirement Document
 
 ## Product Overview
 
-Avoli is a mobile-first digital cafe menu application designed for Persian-speaking users.
+Rayo is a mobile-first digital cafe menu application designed for Persian-speaking users.
 
 The system allows customers to browse menu categories, explore food items, view detailed information, save favorites, and check item availability.
 
