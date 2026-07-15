@@ -8,28 +8,76 @@ import FoodModal from "@/components/features/FoodModal";
 import OrderInvoiceModal from "@/components/features/OrderInvoiceModal";
 import PageShell from "@/components/layout/PageShell";
 import Header from "@/components/ui/Header";
+import { useDeliveryItems } from "@/hooks/menu/useDeliveryItems";
+import { useDineInItems } from "@/hooks/menu/useDineInItems";
 import { useFavorites } from "@/hooks/useFavorites";
-import { menuFoods } from "@/lib/menu/utils";
-import type { FavoriteEntry, Food } from "@/types/menu";
+import { mapMenuItemToFood } from "@/lib/menu/utils";
+import type { Food } from "@/types/menu";
 
 export default function FavoritesPage() {
   const { favorites, addToFavorites, removeFromFavorites, getQuantity } =
     useFavorites();
+
+  const { data: dineInResponse, isLoading: dineInLoading } = useDineInItems();
+
+  const { data: deliveryResponse, isLoading: deliveryLoading } =
+    useDeliveryItems();
+
   const [selectedFood, setSelectedFood] = useState<Food | null>(null);
   const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
 
-  const favoriteFoods = useMemo(() => {
+  const favoriteFoods = useMemo<
+    Array<{
+      foodId: string;
+      quantity: number;
+      addedAt: string;
+      food: Food;
+    }>
+  >(() => {
+    const dineInItems = Array.isArray(dineInResponse)
+      ? dineInResponse
+      : (dineInResponse?.result?.data ?? []);
+
+    const deliveryItems = Array.isArray(deliveryResponse)
+      ? deliveryResponse
+      : (deliveryResponse?.result?.data ?? []);
+
+    const allItems = [...dineInItems, ...deliveryItems];
+
+    const foods = allItems.filter((item) => item.Enable).map(mapMenuItemToFood);
+
     return favorites
       .map((entry) => {
-        const food = menuFoods.find((item) => item.id === entry.foodId);
-        return food
-          ? ({ ...entry, food } as FavoriteEntry & { food: Food })
-          : null;
+        const food = foods.find(
+          (item) => String(item.id) === String(entry.foodId),
+        );
+
+        if (!food) return null;
+
+        return {
+          ...entry,
+          food,
+        };
       })
-      .filter((entry): entry is FavoriteEntry & { food: Food } =>
-        Boolean(entry),
+      .filter(
+        (
+          entry,
+        ): entry is {
+          foodId: string;
+          quantity: number;
+          addedAt: string;
+          food: Food;
+        } => Boolean(entry),
       );
-  }, [favorites]);
+  }, [favorites, dineInResponse, deliveryResponse]);
+
+  if (dineInLoading || deliveryLoading) {
+    return (
+      <PageShell>
+        <div className="py-20 text-center">در حال بارگذاری سفارش‌ها...</div>
+      </PageShell>
+    );
+  }
 
   return (
     <PageShell>
@@ -86,11 +134,13 @@ export default function FavoritesPage() {
       )}
       <FoodModal
         food={selectedFood}
-        quantity={selectedFood ? getQuantity(selectedFood.id) : 0}
+        quantity={selectedFood ? getQuantity(String(selectedFood.id)) : 0}
         onClose={() => setSelectedFood(null)}
-        onAddToOrder={() => selectedFood && addToFavorites(selectedFood.id)}
+        onAddToOrder={() =>
+          selectedFood && addToFavorites(String(selectedFood.id))
+        }
         onRemoveFromOrder={() =>
-          selectedFood && removeFromFavorites(selectedFood.id)
+          selectedFood && removeFromFavorites(String(selectedFood.id))
         }
       />
       <OrderInvoiceModal

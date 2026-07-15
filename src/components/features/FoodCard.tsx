@@ -111,7 +111,7 @@ const FoodCard: FC<FoodCardProps> = ({
             </p>
           </div>
           <span className="text-sm font-semibold text-amber-600 whitespace-nowrap">
-            {formatPrice(food.price)}
+            {formatPrice(food.price)} تومان
           </span>
         </div>
         <div className="mt-4">

@@ -107,7 +107,7 @@ const FoodModal: FC<FoodModalProps> = ({
                 </p>
               </div>
               <div className="rounded-full bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-600">
-                {formatPrice(food.price)}
+                {formatPrice(food.price)} تومان
               </div>
             </div>
 

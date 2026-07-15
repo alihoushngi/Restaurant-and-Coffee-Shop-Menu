@@ -7,53 +7,120 @@ import FoodModal from "@/components/features/FoodModal";
 import PageShell from "@/components/layout/PageShell";
 import Header from "@/components/ui/Header";
 import SearchInput from "@/components/ui/SearchInput";
+import { useDeliveryItems } from "@/hooks/menu/useDeliveryItems";
+import { useDineInItems } from "@/hooks/menu/useDineInItems";
 import { useFavorites } from "@/hooks/useFavorites";
-import { getCategoryById, menuFoods } from "@/lib/menu/utils";
+import { mapMenuItemToFood } from "@/lib/menu/utils";
 import type { Food } from "@/types/menu";
+
+type SearchFood = Food & {
+  menuType: "dineIn" | "delivery";
+};
 
 export default function SearchPage() {
   const { addToFavorites, removeFromFavorites, getQuantity } = useFavorites();
+
+  const { data: dineInResponse } = useDineInItems();
+
+  const { data: deliveryResponse } = useDeliveryItems();
+
   const [query, setQuery] = useState("");
-  const [selectedFood, setSelectedFood] = useState<Food | null>(null);
+
+  const [selectedFood, setSelectedFood] = useState<SearchFood | null>(null);
+
+  const foods = useMemo<SearchFood[]>(() => {
+    const dineInItems = Array.isArray(dineInResponse)
+      ? dineInResponse
+      : (dineInResponse?.result?.data ?? []);
+
+    const deliveryItems = Array.isArray(deliveryResponse)
+      ? deliveryResponse
+      : (deliveryResponse?.result?.data ?? []);
+
+    const dineFoods = dineInItems
+      .filter((item) => item.Enable)
+      .map(mapMenuItemToFood)
+      .map((food) => ({
+        ...food,
+        menuType: "dineIn" as const,
+      }));
+
+    const deliveryFoods = deliveryItems
+      .filter((item) => item.Enable)
+      .map(mapMenuItemToFood)
+      .map((food) => ({
+        ...food,
+        menuType: "delivery" as const,
+      }));
+
+    return [...dineFoods, ...deliveryFoods];
+  }, [dineInResponse, deliveryResponse]);
 
   const filteredFoods = useMemo(() => {
-    const normalized = query.trim().toLocaleLowerCase("fa-IR");
-    if (!normalized) return menuFoods;
+    const normalized = query.trim().toLocaleLowerCase("fa");
 
-    return menuFoods.filter((food) => {
-      const categoryTitle =
-        getCategoryById(food.categoryId)?.title.toLocaleLowerCase("fa-IR") ??
-        "";
-      return (
-        food.name.toLocaleLowerCase("fa-IR").includes(normalized) ||
-        categoryTitle.includes(normalized)
-      );
-    });
-  }, [query]);
+    if (!normalized) {
+      return [];
+    }
+
+    return foods.filter((food) =>
+      food.name.toLocaleLowerCase("fa").includes(normalized),
+    );
+  }, [foods, query]);
 
   return (
     <PageShell>
-      <Header title="جستجو" subtitle="نام غذا یا دسته‌بندی را وارد کن" />
+      <Header title="جستجوی غذا" subtitle="نام غذا را وارد کن" />
+
       <SearchInput value={query} onChange={setQuery} />
+
+      {filteredFoods.length === 0 && query && (
+        <div className="py-12 text-center text-sm text-zinc-500">
+          غذایی با این نام پیدا نشد
+        </div>
+      )}
+
       <section className="grid gap-4 md:grid-cols-2">
         {filteredFoods.map((food) => (
-          <FoodCard
-            key={food.id}
-            food={food}
-            quantity={getQuantity(food.id)}
-            onAddToOrder={() => addToFavorites(food.id)}
-            onRemoveFromOrder={() => removeFromFavorites(food.id)}
-            onOpen={() => setSelectedFood(food)}
-          />
+          <div key={`${food.menuType}-${food.id}`} className="relative">
+            <div
+              className="
+                absolute
+                right-3
+                top-3
+                z-10
+                rounded-full
+                bg-white/90
+                px-3
+                py-1
+                text-xs
+                font-semibold
+                shadow
+              "
+            >
+              {food.menuType === "delivery" ? "🛵 بیرون‌بر" : "🍽 داخل سالن"}
+            </div>
+
+            <FoodCard
+              food={food}
+              quantity={getQuantity(String(food.id))}
+              onAddToOrder={() => addToFavorites(String(food.id))}
+              onRemoveFromOrder={() => removeFromFavorites(String(food.id))}
+              onOpen={() => setSelectedFood(food)}
+            />
+          </div>
         ))}
       </section>
+
       <FoodModal
         food={selectedFood}
-        quantity={selectedFood ? getQuantity(selectedFood.id) : 0}
+        quantity={selectedFood ? getQuantity(String(selectedFood.id)) : 0}
         onClose={() => setSelectedFood(null)}
-        onAddToOrder={() => selectedFood && addToFavorites(selectedFood.id)}
+        onAddToOrder={() =>
+          selectedFood && addToFavorites(String(selectedFood.id))
+        }
         onRemoveFromOrder={() =>
-          selectedFood && removeFromFavorites(selectedFood.id)
+          selectedFood && removeFromFavorites(String(selectedFood.id))
         }
       />
     </PageShell>
